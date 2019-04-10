@@ -1,0 +1,33 @@
+{
+  "name": "internal-tool-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binariks-react/internal-tool-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binariks-react/internal-tool-api/issues"
+  },
+  "homepage": "https://github.com/binariks-react/internal-tool-api#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "connect-mongo": "^2.0.3",
+    "connect-mongodb-session": "^2.1.1",
+    "dotenv": "^7.0.0",
+    "fastify": "^2.2.0",
+    "fastify-cookie": "^3.0.2",
+    "fastify-plugin": "^1.5.0",
+    "fastify-session": "^2.0.0",
+    "fastify-swagger": "^2.3.2",
+    "mongoose": "^5.4.22",
+    "nodemon": "^1.18.10"
+  }
+}
