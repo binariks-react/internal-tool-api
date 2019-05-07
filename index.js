@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 require('dotenv').config();
 const fastify = require('fastify')({
   logger: true,
@@ -5,17 +6,41 @@ const fastify = require('fastify')({
 const fastifySession = require('fastify-session');
 const fastifyCookie = require('fastify-cookie');
 const MongoStore = require('connect-mongodb-session')(fastifySession);
-const registerRoutes = require('./src/registerRoutes');
-const preHandler = require('./src/preHandler');
+const WebSocket = require('ws');
+const userControllers = require('./src/user/user.controllers');
 
-registerRoutes(fastify);
+
+const wss = new WebSocket.Server({
+  port: 8080,
+  perMessageDeflate: {
+    zlibDeflateOptions: {
+      // See zlib defaults.
+      chunkSize: 1024,
+      memLevel: 7,
+      level: 3,
+    },
+    zlibInflateOptions: {
+      chunkSize: 10 * 1024,
+    },
+    // Other options settable:
+    clientNoContextTakeover: true, // Defaults to negotiated value.
+    serverNoContextTakeover: true, // Defaults to negotiated value.
+    serverMaxWindowBits: 10, // Defaults to negotiated value.
+    // Below options specified as default values.
+    concurrencyLimit: 10, // Limits zlib concurrency for perf.
+    threshold: 1024, // Size (in bytes) below which messages
+    // should not be compressed.
+  }
+});
+
+wss.on('connection', userControllers.onUserConnect);
 
 fastify.register(fastifyCookie);
+console.log(process.env.DATABASE_NAME)
 fastify.register(fastifySession, {
   secret: 'a secret with minimum length of 32 characters',
   store: new MongoStore({
     uri: process.env.DATABASE_URL,
-    databaseName: process.env.DATABASE_NAME,
     collection: 'sessions',
   }),
   cookie: {
@@ -25,7 +50,6 @@ fastify.register(fastifySession, {
   },
 });
 
-fastify.addHook('onRequest', preHandler);
 
 fastify.register(require('./src/connectMongo'));
 

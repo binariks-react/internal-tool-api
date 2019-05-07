@@ -1,18 +1,12 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "react-app",
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
   "plugins": [
-    "react",
     "import"
   ],
   "settings": {
-    "react": {
-      "version": "16.6"
-    },
     "import/resolver": {
       "node": {
         "extensions": [
@@ -144,42 +138,6 @@
     "prefer-const": 1,
     "prefer-template": 2,
     "rest-spread-spacing": 2,
-
-    "react/display-name": 0,
-    "react/prop-types": 2,
-    "react/no-unknown-property": 0,
-    "react/no-unescaped-entities": 0,
-    "react/default-props-match-prop-types": 2,
-    "react/no-access-state-in-setstate": 2,
-    "react/no-array-index-key": 2,
-    "react/no-danger": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-multi-comp": ["error", { "ignoreStateless": true }],
-    "react/no-redundant-should-component-update": 2,
-    "react/no-this-in-sfc": 2,
-    "react/no-unsafe": 2,
-    "react/no-unused-prop-types": 2,
-    "react/no-will-update-set-state": 2,
-    "react/prefer-es6-class": 2,
-    "react/prefer-stateless-function": 2,
-    "react/require-default-props": 2,
-    "react/jsx-boolean-value": 2,
-    "react/jsx-closing-bracket-location": [1, "tag-aligned"],
-    "react/jsx-curly-spacing": 2,
-    "react/jsx-equals-spacing": 2,
-    "react/jsx-first-prop-new-line": 2,
-    "react/jsx-key": 2,
-    "react/jsx-max-props-per-line": ["error", { "maximum": 4, "when": "always" }],
-    "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
-    "react/jsx-curly-brace-presence": ["error", "never"],
-    "react/jsx-pascal-case": 2,
-    "react/jsx-props-no-multi-spaces": 2,
-    "react/jsx-tag-spacing": ["error", { "closingSlash": "never",
-      "beforeSelfClosing": "always",
-      "afterOpening": "never",
-      "beforeClosing": "allow"
-    }],
-    "react/jsx-wrap-multilines": 2,
 
     "import/named": 2,
     "import/no-self-import": 2,

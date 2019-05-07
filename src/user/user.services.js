@@ -1,40 +1,20 @@
 const User = require('./user.model');
 
-const findUsers = async () => {
-  const users = await User.find();
-  return users;
+const createUser = nickname => User.create({ nickname, rooms: [] });
+
+const findUserByNickname = nickname => User.findOne({ nickname });
+
+const findOrCreate = async (nickname) => {
+  const user = await findUserByNickname(nickname);
+  if (user) return user;
+  return createUser(nickname);
 };
 
-const findUserById = async (id) => {
-  const user = await User.findOne({ id });
-  return user;
-};
 
-const findUserByLogin = async (login) => {
-  const user = await User.findOne({ login });
-  return user;
-};
-
-const updateUser = async (id, user) => {
-  await User.updateOne({ id }, user);
-  return true;
-};
-
-const deleteUser = async (id) => {
-  await User.deleteOne({ id });
-  return true;
-};
-
-const createUser = async (user) => {
-  await User.create(user);
-  return true;
-};
+const addRoom = (nickname, roomId) => User.updateOne({ nickname }, { $addToSet: { rooms: roomId } });
 
 module.exports = {
-  findUsers,
-  updateUser,
-  deleteUser,
-  createUser,
-  findUserById,
-  findUserByLogin,
+  addRoom,
+  findOrCreate,
+  findUserByNickname,
 };

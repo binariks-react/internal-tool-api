@@ -28,6 +28,12 @@
     "fastify-session": "^2.0.0",
     "fastify-swagger": "^2.3.2",
     "mongoose": "^5.4.22",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "ws": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.2"
   }
 }
